@@ -21,11 +21,11 @@ import javax.persistence.TemporalType;
 @Table( name = "COUNTRY" )
 public class Country implements Serializable {
 
-	@Column( name = "COUNTRY_ID", table = "COUNTRY", nullable = false, precision = 20 )
+	@Column( name = "COUNTRY_ID", nullable = false, precision = 20 )
 	@Id
 	@SequenceGenerator( name = "CountrySeq", sequenceName = "COUNTRY_SEQ", allocationSize = 1 )
 	@GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "CountrySeq" )
-	private BigDecimal country;
+	private BigDecimal countryId;
 
 	@OneToMany( targetEntity = Birth.class, mappedBy = "country" )
 	private Collection<Birth> birthCollection;
@@ -33,16 +33,16 @@ public class Country implements Serializable {
 	@OneToMany( targetEntity = Address.class, mappedBy = "country" )
 	private Collection<Address> addressCollection;
 
-	@Column( name = "CODE", table = "COUNTRY", nullable = false, length = 2 )
+	@Column( name = "CODE", nullable = false, length = 2 )
 	@Basic
 	private String code;
 
-	@Column( name = "CREATED_ON", table = "COUNTRY", nullable = false )
+	@Column( name = "CREATED_ON", nullable = false )
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date createdOn;
 
-	@Column( name = "MODIFIED_ON", table = "COUNTRY" )
+	@Column( name = "MODIFIED_ON")
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date modifiedOn;
@@ -51,12 +51,12 @@ public class Country implements Serializable {
 
 	}
 
-	public BigDecimal getCountry() {
-		return this.country;
+	public BigDecimal getCountryId() {
+		return this.countryId;
 	}
 
 	public void setCountryId( BigDecimal country ) {
-		this.country = country;
+		this.countryId = country;
 	}
 
 	public Collection<Birth> getBirthCollection() {

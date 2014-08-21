@@ -19,17 +19,17 @@ import javax.persistence.TemporalType;
 @Table( name = "PERSON_ADDRESS" )
 public class PersonAddress implements Serializable {
 
-	@Column( name = "CREATED_ON", table = "PERSON_ADDRESS", nullable = false )
+	@Column( name = "CREATED_ON", nullable = false )
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date createdOn;
 
-	@Column( name = "MODIFIED_ON", table = "PERSON_ADDRESS" )
+	@Column( name = "MODIFIED_ON" )
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date modifiedOn;
 
-	@Column( name = "PERSON_ADDRESS_ID", table = "PERSON_ADDRESS", nullable = false, precision = 20 )
+	@Column( name = "PERSON_ADDRESS_ID", nullable = false, precision = 20 )
 	@Id
 	private BigDecimal personAddressId;
 

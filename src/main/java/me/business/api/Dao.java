@@ -17,8 +17,12 @@ public interface Dao<T extends Object> {
 
 	void create( T t );
 	
+        void update( T t );
+        
 	T get( Serializable id );
 
 	List<T> getAll();
-	
+        
+        long count();
+        
 }

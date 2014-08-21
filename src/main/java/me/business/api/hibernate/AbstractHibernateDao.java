@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.Date;
+import java.util.List;
 
 import me.business.api.Dao;
 
@@ -49,7 +50,7 @@ public abstract class AbstractHibernateDao<T extends Object> implements Dao<T> {
 	@Override
 	public void create( T t ) {
 
-		Method method = ReflectionUtils.findMethod( getDomainClass(), "setDateCreated", new Class[] { Date.class } );
+		Method method = ReflectionUtils.findMethod( getDomainClass(), "setCreatedOn", new Class[] { Date.class } );
 		if( method != null ) {
 			try {
 				method.invoke( t, new Date() );
@@ -66,6 +67,32 @@ public abstract class AbstractHibernateDao<T extends Object> implements Dao<T> {
 	@SuppressWarnings( "unchecked" )
 	public T get( Serializable id ) {
 		return ( T )getSession().get( getDomainClass(), id );
+	}
+        
+        @Override
+	public long count() {
+		return ( Long )getSession().createQuery( "select count(*) from " + getDomainClassName() ).uniqueResult();
+	}
+        
+        @Override
+        @SuppressWarnings( "unchecked" )
+	public List<T> getAll() {
+		return getSession().createQuery( "from " + getDomainClassName() ).list();
+	}
+        
+        @Override
+	public void update( T t ) {
+                // If there's a setModifiedOn() method, then set the date.
+		Method method = ReflectionUtils.findMethod( getDomainClass(), "setModifiedOn", new Class[] { Date.class } );
+		if( method != null ) {
+			try {
+				method.invoke( t, new Date() );
+			}
+			catch( Exception e ) {
+				// Ignore any exception here; simply abort the setDate() attempt
+			}
+		}
+		getSession().update( t );
 	}
 
 }

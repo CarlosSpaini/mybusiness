@@ -27,37 +27,37 @@ public class Address implements Serializable {
 	@OneToMany( targetEntity = PersonAddress.class, mappedBy = "addressId" )
 	private Collection<PersonAddress> personAddressCollection;
 
-	@Column( name = "STREET", table = "ADDRESS", length = 100 )
+	@Column( name = "STREET", length = 100 )
 	@Basic
 	private String street;
 
-	@Column( name = "POST_CODE", table = "ADDRESS", length = 50 )
+	@Column( name = "POST_CODE", length = 50 )
 	@Basic
 	private String postCode;
 
-	@Column( name = "ADDRESS_TYPE", table = "ADDRESS", length = 50 )
+	@Column( name = "ADDRESS_TYPE", length = 50 )
 	@Basic
 	private String addressType;
 
-	@Column( name = "ADDRESS_ID", table = "ADDRESS", nullable = false, precision = 20 )
+	@Column( name = "ADDRESS_ID", nullable = false, precision = 20 )
 	@Id
 	private BigDecimal addressId;
 
-	@Column( name = "CITY", table = "ADDRESS", length = 100 )
+	@Column( name = "CITY", length = 100 )
 	@Basic
 	private String city;
 
-	@Column( name = "CREATED_ON", table = "ADDRESS", nullable = false )
+	@Column( name = "CREATED_ON", nullable = false )
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date createdOn;
 
-	@Column( name = "MODIFIED_ON", table = "ADDRESS" )
+	@Column( name = "MODIFIED_ON")
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date modifiedOn;
 
-	@Column( name = "DISTRICT_NAME", table = "ADDRESS", length = 100 )
+	@Column( name = "DISTRICT_NAME", length = 100 )
 	@Basic
 	private String districtName;
 

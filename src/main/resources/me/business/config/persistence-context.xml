@@ -13,16 +13,16 @@
 
 	<beans profile="within-server">
 		<util:properties id="hibernateProperties">
-			<prop key="hibernate.dialect">org.hibernate.dialect.DB2Dialect</prop>
+			<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 			<prop key="hibernate.show_sql">false</prop>
 		</util:properties>
 	</beans>
 	<beans profile="no-server">
 		<util:properties id="hibernateProperties">
-			<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+			<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 			<prop key="hibernate.show_sql">true</prop>
-			<prop key="hibernate.connection.url">jdbc:h2:mem:test;INIT=create schema if not exists myschema\;SET SCHEMA myschema\;RUNSCRIPT FROM 'classpath:/db/schema.sql';MODE=Oracle;DB_CLOSE_DELAY=-1</prop>
-			<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+			<prop key="hibernate.connection.url">jdbc:h2:mem:test;INIT=create schema if not exists myschema\;SET SCHEMA myschema;MODE=Oracle;DB_CLOSE_DELAY=-1</prop>
+			<!--<prop key="hibernate.hbm2ddl.auto">create-drop</prop>-->
 		</util:properties>
 	</beans>
 

@@ -22,25 +22,25 @@ public class Birth implements Serializable {
 	@JoinColumn( name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID", insertable = true, nullable = true, unique = false, updatable = true )
 	private Country country;
 
-	@Column( name = "CREATED_ON", table = "BIRTH", nullable = false )
+	@Column( name = "CREATED_ON", nullable = false )
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date createdOn;
 
-	@Column( name = "BIRTH_CITY", table = "BIRTH", length = 250 )
+	@Column( name = "BIRTH_CITY", length = 250 )
 	@Basic
 	private String birthCity;
 
-	@Column( name = "MODIFIED_ON", table = "BIRTH" )
+	@Column( name = "MODIFIED_ON" )
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date modifiedOn;
 
-	@Column( name = "BIRTH_ID", table = "BIRTH", nullable = false, precision = 20 )
+	@Column( name = "BIRTH_ID", nullable = false, precision = 20 )
 	@Id
 	private BigDecimal birthId;
 
-	@Column( name = "BIRTH_DATE", table = "BIRTH", length = 10 )
+	@Column( name = "BIRTH_DATE", length = 10 )
 	@Basic
 	private String birthDate;
 

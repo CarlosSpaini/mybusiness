@@ -18,19 +18,19 @@ import javax.persistence.TemporalType;
 @Table( name = "PERSON" )
 public class Person implements Serializable {
 
-	@Column( name = "PERSON_ID", table = "PERSON", nullable = false, precision = 20 )
+	@Column( name = "PERSON_ID", nullable = false, precision = 20 )
 	@Id
 	private BigDecimal personId;
 
 	@OneToMany( targetEntity = PersonAddress.class, mappedBy = "personId" )
 	private Collection<PersonAddress> personAddressCollection;
 
-	@Column( name = "CREATED_ON", table = "PERSON", nullable = false )
+	@Column( name = "CREATED_ON", nullable = false )
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date createdOn;
 
-	@Column( name = "MODIFIED_ON", table = "PERSON" )
+	@Column( name = "MODIFIED_ON")
 	@Temporal( TemporalType.TIMESTAMP )
 	@Basic
 	private Date modifiedOn;
