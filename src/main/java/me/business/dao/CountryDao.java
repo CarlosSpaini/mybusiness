@@ -4,5 +4,6 @@ import me.business.api.Dao;
 import me.business.model.Country;
 
 public interface CountryDao extends Dao<Country> {
-    
+
+	public Country getByCode( String code );
 }

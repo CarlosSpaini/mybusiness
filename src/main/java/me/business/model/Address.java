@@ -1,11 +1,9 @@
 package me.business.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,50 +18,43 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table( name = "ADDRESS" )
+@Table(name = "ADDRESS")
 public class Address implements Serializable {
 
-	@ManyToOne( targetEntity = Country.class )
-	@JoinColumn( name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID", insertable = true, nullable = true, unique = false, updatable = true )
+	@ManyToOne(targetEntity = Country.class)
+	@JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID", insertable = true, nullable = true, unique = false, updatable = true)
 	private Country country;
 
-	@OneToMany( targetEntity = PersonAddress.class, mappedBy = "addressId" )
+	@OneToMany(targetEntity = PersonAddress.class, mappedBy = "addressId")
 	private Collection<PersonAddress> personAddressCollection;
 
-	@Column( name = "STREET", length = 100 )
-	@Basic
+	@Column(name = "STREET", length = 100)
 	private String street;
 
-	@Column( name = "POST_CODE", length = 50 )
-	@Basic
+	@Column(name = "POST_CODE", length = 50)
 	private String postCode;
 
-	@Column( name = "ADDRESS_TYPE", length = 50 )
-	@Basic
+	@Column(name = "ADDRESS_TYPE", length = 50)
 	private String addressType;
 
-	@Column( name = "ADDRESS_ID", nullable = false, precision = 20 )
+	@Column(name = "ADDRESS_ID", nullable = false, precision = 20)
 	@Id
-	@SequenceGenerator( name = "AddressSeq", sequenceName = "ADDRESS_SEQ", allocationSize = 1 )
-	@GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "AddressSeq" )
-	private BigDecimal addressId;
+	@SequenceGenerator(name = "AddressSeq", sequenceName = "ADDRESS_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AddressSeq")
+	private Long addressId;
 
-	@Column( name = "CITY", length = 100 )
-	@Basic
+	@Column(name = "CITY", length = 100)
 	private String city;
 
-	@Column( name = "CREATED_ON", nullable = false )
-	@Temporal( TemporalType.TIMESTAMP )
-	@Basic
+	@Column(name = "CREATED_ON", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
 
-	@Column( name = "MODIFIED_ON")
-	@Temporal( TemporalType.TIMESTAMP )
-	@Basic
+	@Column(name = "MODIFIED_ON")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedOn;
 
-	@Column( name = "DISTRICT_NAME", length = 100 )
-	@Basic
+	@Column(name = "DISTRICT_NAME", length = 100)
 	private String districtName;
 
 	public Address() {
@@ -74,7 +65,7 @@ public class Address implements Serializable {
 		return this.country;
 	}
 
-	public void setCountry( Country country ) {
+	public void setCountry(Country country) {
 		this.country = country;
 	}
 
@@ -82,7 +73,7 @@ public class Address implements Serializable {
 		return this.street;
 	}
 
-	public void setStreet( String street ) {
+	public void setStreet(String street) {
 		this.street = street;
 	}
 
@@ -90,7 +81,7 @@ public class Address implements Serializable {
 		return this.postCode;
 	}
 
-	public void setPostCode( String postCode ) {
+	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
 
@@ -98,15 +89,15 @@ public class Address implements Serializable {
 		return this.addressType;
 	}
 
-	public void setAddressType( String addressType ) {
+	public void setAddressType(String addressType) {
 		this.addressType = addressType;
 	}
 
-	public BigDecimal getAddressId() {
+	public Long getAddressId() {
 		return this.addressId;
 	}
 
-	public void setAddressId( BigDecimal addressId ) {
+	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
 
@@ -114,7 +105,7 @@ public class Address implements Serializable {
 		return this.city;
 	}
 
-	public void setCity( String city ) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
@@ -122,7 +113,7 @@ public class Address implements Serializable {
 		return this.createdOn;
 	}
 
-	public void setCreatedOn( Date createdOn ) {
+	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 
@@ -130,7 +121,7 @@ public class Address implements Serializable {
 		return this.modifiedOn;
 	}
 
-	public void setModifiedOn( Date modifiedOn ) {
+	public void setModifiedOn(Date modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
 
@@ -138,7 +129,7 @@ public class Address implements Serializable {
 		return this.districtName;
 	}
 
-	public void setDistrictName( String districtName ) {
+	public void setDistrictName(String districtName) {
 		this.districtName = districtName;
 	}
 
@@ -146,7 +137,7 @@ public class Address implements Serializable {
 		return this.personAddressCollection;
 	}
 
-	public void setPersonAddressCollection( Collection<PersonAddress> personAddressCollection ) {
+	public void setPersonAddressCollection(Collection<PersonAddress> personAddressCollection) {
 		this.personAddressCollection = personAddressCollection;
 	}
 
