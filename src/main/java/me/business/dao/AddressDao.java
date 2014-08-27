@@ -1,5 +1,8 @@
 package me.business.dao;
 
-public interface AddressDao {
+import me.business.api.Dao;
+import me.business.model.Address;
+
+public interface AddressDao extends Dao<Address>{
     
 }

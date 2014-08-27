@@ -50,6 +50,10 @@ public class Country implements Serializable {
 	public Country() {
 
 	}
+	
+	public Country( String code ) {
+		this.code = code;
+	}
 
 	public BigDecimal getCountryId() {
 		return this.countryId;
