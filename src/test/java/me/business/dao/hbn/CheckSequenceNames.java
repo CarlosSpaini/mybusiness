@@ -1,12 +1,15 @@
 package me.business.dao.hbn;
 
 import static org.junit.Assert.fail;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.SequenceGenerator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.reflections.Reflections;
@@ -68,10 +71,10 @@ public class CheckSequenceNames {
 
 		for (Class<?> clazz : entities) {
 
-			System.out.println(clazz);
 			String name = getSequenceName(clazz);
 			if (name == null)
 				continue;
+			System.out.println("---------------------->>>>>" + clazz + " " + name);
 			if (!schemaContent.contains(name.toLowerCase())) {
 				fail("The clazz " + clazz.getSimpleName()
 						+ " has a sequence called: " + name

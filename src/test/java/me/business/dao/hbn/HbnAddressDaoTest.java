@@ -1,13 +1,11 @@
 package me.business.dao.hbn;
 
+import static org.junit.Assert.*;
 import me.business.dao.AddressDao;
 import me.business.dao.CountryDao;
 import me.business.model.Address;
 import me.business.model.Country;
-import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +26,9 @@ public class HbnAddressDaoTest {
 	public void testCreate() {
 		Country country = countryDao.getByCode("BE");
 		Address address = new Address();
-		address.setCountry(new Country("BE"));
-		// 1) is there any way for hibernate to automatically load country object?
+		address.setCountry(country);
 		addressDao.create(address);
-		// 2) country is constant in database. so, these two values should be equal
-		assertEquals(country.getCountryId(), address.getCountry().getCountryId());
+		assertEquals(country.getCountryId(), addressDao.get(address.getAddressId()).getCountry().getCountryId());
 		
 	}
 }
