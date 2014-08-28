@@ -9,7 +9,6 @@ import java.util.Set;
 import javax.persistence.SequenceGenerator;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 import org.reflections.scanners.SubTypesScanner;
@@ -17,10 +16,6 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 
 /**
@@ -30,10 +25,6 @@ import org.springframework.util.FileCopyUtils;
  * @version 1.0 Aug 28, 2014
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/me/business/config/test-config.xml")
-@ActiveProfiles("no-server")
-@Transactional
 public class CheckSequenceNames {
 
 	private static final String MODEL_PACKAGE = "me.business.model";
