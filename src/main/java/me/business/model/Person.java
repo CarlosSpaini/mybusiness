@@ -1,13 +1,16 @@
 package me.business.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,9 +23,12 @@ public class Person implements Serializable {
 	@Id
 	private Long personId;
 
-	@OneToMany(targetEntity = PersonAddress.class, mappedBy = "personId")
-	private Collection<PersonAddress> personAddressCollection;
-
+	@ManyToMany
+    @JoinTable(name="PERSON_ADDRESS", 
+                joinColumns={@JoinColumn(name="PERSON_ID")}, 
+                inverseJoinColumns={@JoinColumn(name="ADDRESS_ID")})
+	private Set<Address> address = new HashSet<Address>();
+	
 	@Column(name = "CREATED_ON", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
@@ -43,14 +49,6 @@ public class Person implements Serializable {
 		this.personId = personId;
 	}
 
-	public Collection<PersonAddress> getPersonAddressCollection() {
-		return this.personAddressCollection;
-	}
-
-	public void setPersonAddressCollection(Collection<PersonAddress> personAddressCollection) {
-		this.personAddressCollection = personAddressCollection;
-	}
-
 	public Date getCreatedOn() {
 		return this.createdOn;
 	}
@@ -65,6 +63,14 @@ public class Person implements Serializable {
 
 	public void setModifiedOn(Date modifiedOn) {
 		this.modifiedOn = modifiedOn;
+	}
+
+	public Set<Address> getAddress() {
+		return address;
+	}
+
+	public void setAddress( Set<Address> address ) {
+		this.address = address;
 	}
 
 }

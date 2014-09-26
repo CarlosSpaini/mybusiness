@@ -1,21 +1,27 @@
 package me.business.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "ADDRESS")
@@ -24,9 +30,9 @@ public class Address implements Serializable {
 	@ManyToOne(targetEntity = Country.class)
 	@JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID", insertable = true, nullable = true, unique = false, updatable = true)
 	private Country country;
-
-	@OneToMany(targetEntity = PersonAddress.class, mappedBy = "addressId")
-	private Collection<PersonAddress> personAddressCollection;
+	
+	@ManyToMany( mappedBy = "address" )
+	private Set<Person> persons = new HashSet<Person>();
 
 	@Column(name = "STREET", length = 100)
 	private String street;
@@ -56,6 +62,10 @@ public class Address implements Serializable {
 
 	@Column(name = "DISTRICT_NAME", length = 100)
 	private String districtName;
+	
+	@OneToMany ( fetch = FetchType.LAZY, targetEntity = SomeId.class, mappedBy = "address" )
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.ALL})
+	private Set<SomeId> someIds;
 
 	public Address() {
 
@@ -133,12 +143,20 @@ public class Address implements Serializable {
 		this.districtName = districtName;
 	}
 
-	public Collection<PersonAddress> getPersonAddressCollection() {
-		return this.personAddressCollection;
+	public Set<Person> getPersons() {
+		return persons;
 	}
 
-	public void setPersonAddressCollection(Collection<PersonAddress> personAddressCollection) {
-		this.personAddressCollection = personAddressCollection;
+	public void setPersons( Set<Person> persons ) {
+		this.persons = persons;
+	}
+
+	public Set<SomeId> getSomeIds() {
+		return someIds;
+	}
+
+	public void setSomeIds( Set<SomeId> someIds ) {
+		this.someIds = someIds;
 	}
 
 }
